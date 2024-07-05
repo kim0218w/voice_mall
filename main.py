@@ -6,8 +6,8 @@ def main():
    
     
     order_processor = vr.OrderProcessor()
-    id = 'beno10n@naver.com'
-    pw = 'beco025yh'
+    id = 
+    pw = 
     while True:
         try:
             products, bool = order_processor.run()
