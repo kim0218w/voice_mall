@@ -1,0 +1,15 @@
+1. requirements.txt에 있는 패키지 다운받기 
+2. .env 파일 만들기 
+
+
+.env 파일 형식은 아래와 같음 
+
+COUPANG_ID = 그대의 아이디
+COUPANG_PW = 그대의 비번
+
+STT_NAVER_CLOUD_URL = naver_cloud_url
+STT_NAVER_CLOUD_CLIENT_ID = 그대의 naver_cloud client id
+STT_NAVER_CLOUD_SECRET = 그대의 naver_cloud client id
+
+참고
+https://api.ncloud-docs.com/docs/ai-naver-clovaspeechrecognition-stt

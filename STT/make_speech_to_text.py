@@ -1,10 +1,6 @@
 import requests
-from dotenv import load_dotenv
 import os 
 
-
-# .env 파일 로드하기
-load_dotenv()
 class make_speech_to_text:
 
     # 환경변수 가져오기
