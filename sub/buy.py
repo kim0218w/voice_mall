@@ -117,7 +117,7 @@ class buyBySelenium:
 
             try:
                 prod_quantity = self.driver.find_element(By.CSS_SELECTOR, ".prod-quantity__plus")
-                for i in range(quantity):
+                for i in range(quantity-1):
                     prod_quantity.click()
             except Exception as e:
                 print(e)
