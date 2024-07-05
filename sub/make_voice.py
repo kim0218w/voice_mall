@@ -1,6 +1,7 @@
-from gtts import gTTS 
+from gtts import gTTS
 from playsound import playsound
-import os 
+import os
+
 
 def make_voice(text):
     file_name = 'order_confirm.mp3'
@@ -13,10 +14,11 @@ def make_voice(text):
             os.remove('order_confirm.mp3')
             print(f"파일 {'order_confirm.mp3'} 이(가) 삭제되었습니다.")
         except Exception as e:
-                print(f"파일 삭제 중 오류 발생: {e}")
+            print(f"파일 삭제 중 오류 발생: {e}")
     else:
         print(f"파일 {'order_confirm.mp3'} 이(가) 존재하지 않습니다.")
         print(text)
+
 
 def play_sound(file_name):
     playsound(file_name)
