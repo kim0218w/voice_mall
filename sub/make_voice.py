@@ -17,7 +17,6 @@ def make_voice(text):
             print(f"파일 삭제 중 오류 발생: {e}")
     else:
         print(f"파일 {'order_confirm.mp3'} 이(가) 존재하지 않습니다.")
-        print(text)
 
 
 def play_sound(file_name):

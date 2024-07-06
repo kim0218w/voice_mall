@@ -1,0 +1,184 @@
+{
+    "messages": [
+        {
+            "sender": "client",
+            "text": "안녕"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "떡볶이 5인분 5개 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n떡볶이, 5개\n인분, 5개\n맞으십니까?"
+        },
+        {
+            "sender": "client",
+            "text": "아니야"
+        },
+        {
+            "sender": "ai",
+            "text": "다시 주문해주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "스팸 500g 5개 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n스팸, 500개\n맞으십니까?"
+        },
+        {
+            "sender": "client",
+            "text": "아니"
+        },
+        {
+            "sender": "ai",
+            "text": "다시 주문해주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "스팸 100g 5개 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n스팸, 100개\n맞으십니까?"
+        },
+        {
+            "sender": "client",
+            "text": ""
+        },
+        {
+            "sender": "ai",
+            "text": "다시 주문해주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "사과 4개 주문"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n사과, 4개\n맞으십니까?"
+        },
+        {
+            "sender": "client",
+            "text": "어 맞아"
+        },
+        {
+            "sender": "ai",
+            "text": "주문중"
+        },
+        {
+            "sender": "ai",
+            "text": "요청하신 상품을 장바구니에 모두 담았습니다"
+        },
+        {
+            "sender": "client",
+            "text": "안녕"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "사과 4개 올리브유 5개 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n사과, 4개\n올리브유, 5개\n맞으십니까?"
+        },
+        {
+            "sender": "client",
+            "text": ""
+        },
+        {
+            "sender": "ai",
+            "text": "다시 주문해주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "박원에게 전화해"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하시려면 다시 저를 불러주세요"
+        },
+        {
+            "sender": "client",
+            "text": "안녕"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "사과 4개 올리브유 5개 주문"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n사과, 4개\n올리브유, 5개\n맞으십니까?"
+        },
+        {
+            "sender": "client",
+            "text": "어 그래"
+        },
+        {
+            "sender": "ai",
+            "text": "주문중"
+        },
+        {
+            "sender": "ai",
+            "text": "요청하신 상품을 장바구니에 모두 담았습니다"
+        }
+    ]
+}

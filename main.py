@@ -1,10 +1,12 @@
 import sub.work_flow as wf
 from dotenv import load_dotenv
+import sub.chat as chat
 
 
 def main():
     # 작업 흐름 제어 하는 객체
     wf_ctr = wf.controller()
+    chat.cm.chat_room_init()
     while True:
 
         try:
