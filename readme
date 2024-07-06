@@ -13,3 +13,19 @@ STT_NAVER_CLOUD_SECRET = 그대의 naver_cloud client id
 
 참고
 https://api.ncloud-docs.com/docs/ai-naver-clovaspeechrecognition-stt
+
+
+
+
+# 기능구현 현황
+1. 사용자가 ai를 부를 수 있음 
+2. 사용자가 ai에게 간단하게 주문할 수 있음 
+3. ai와의 대화내용을 모니터링 할 수 있음, 프로젝트루트/monitoring 참고 
+
+ 
+# 기능구현 예정 
+1. 사용자가 ai에게 장바구니에 물건을 추가하라고 요구할 수 있음 (구현예정)
+2. 10분전, 50분전, 가장 최근에 구매한 물건들 구매하라고 ai에 명령할 수 있음 ( 진행중 )
+- 구매한 물건을 프로젝트루트/sub/history/purchase_history.json에 저장함
+
+
