@@ -1,0 +1,7 @@
+selenium           4.22.0
+Wave               0.0.2
+webdriver-manager  4.0.1
+gTTS               2.5.1
+PyAudio            0.2.14
+playsound          1.2.2
+python-dotenv

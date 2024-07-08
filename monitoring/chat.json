@@ -1,0 +1,24 @@
+{
+    "messages": [
+        {
+            "sender": "client",
+            "text": "안녕"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "안창살 600 그람 1개"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n안창살, 600개\n개, 개\n맞으십니까?"
+        }
+    ]
+}
