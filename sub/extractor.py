@@ -58,15 +58,15 @@ class ProductQuantityExtractor:
 
         
 
-# 사용 예시
-extractor = ProductQuantityExtractor()
-texts = [
-    "유리구슬 마흔하나 새우깡 안창살600그람 하나 머스타드90리터 "
-]
+# # 사용 예시
+# extractor = ProductQuantityExtractor()
+# texts = [
+#     "유리구슬 마흔하나 새우깡 안창살600그람 하나 머스타드90리터 "
+# ]
 
-for text in texts:
-    result = extractor.extract(text)
-    # 결과 출력
-    for v in result:
-        print(f"상품명:  {v['item']}, 수량:  {v['quantity']}")
-    print("------")
+# for text in texts:
+#     result = extractor.extract(text)
+#     # 결과 출력
+#     for v in result:
+#         print(f"상품명:  {v['item']}, 수량:  {v['quantity']}")
+#     print("------")
