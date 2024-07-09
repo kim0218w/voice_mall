@@ -1,6 +1,31 @@
 import re
 
 
+def selectNum(input):
+    order_dict = {
+        '첫째': 1, '첫번째': 1,
+        '둘째': 2, '두번째': 2,
+        '셋째': 3, '셋번째': 3,
+        '넷째': 4, '네번째': 4,
+    }
+
+    # 입력 문자열을 단어 단위로 분리하여 처리
+    words = input.split()
+    for word in words:
+        # 각 단어가 패턴(숫자)에 매칭되는지 확인
+        if word in order_dict:
+            number = order_dict[word]
+            return number
+
+    print('잘못된 선택입니다')
+    return None
+
+
+# 예시 사용
+input_text = '예시는 네번째'
+print(selectNum(input_text))
+
+
 class ProductQuantityExtractor:
     def __init__(self):
         # 1부터 100까지 한글 수량을 숫자로 변환하기 위한 딕셔너리
@@ -21,6 +46,7 @@ class ProductQuantityExtractor:
     def convert_korean_numbers(self, text):
         for korean, number in self.korean_to_number.items():
             text = re.sub(r'\b' + korean + r'\b', number, text)
+            print(text)
         return text
 
     def convert_unit(self, unit):
@@ -38,35 +64,36 @@ class ProductQuantityExtractor:
         pattern = re.compile(r'([가-힣]+\d*[그람|그램|리터]*)\s?(\d+)?\s?[개권통대g]*')
         matches = pattern.findall(converted_text)
 
+        # 필터링 단어 리스트 (필요에 따라 추가)
+        filter_words = ['사줘', '해', '장바구니로', '주문', '안녕', '와', '추가로', '주문해줘', '그리고', '하지만',]
+
         # 결과 저장을 위한 리스트
         result = []
 
-        # 추출된 상품명과 수량을 리스트에 저장
+        # 한글 수량 변환
+        converted_text = self.convert_korean_numbers(text)
+
+       # 추출된 상품명과 수량을 리스트에 저장
         for match in matches:
-            name_match = re.match(r'(\D+)(\d+)?(\D+)?', match[0])
-            if name_match:
-                name, amount, unit = name_match.groups()
-                amount = amount if amount else ''
-                unit = self.convert_unit(unit)
-                full_product_name = f"{name}{amount}{unit}".strip()
-                quantity = match[1] if match[1] else '1'
-                result.append({
-                    'item': full_product_name,
-                    'quantity': f"{quantity}"
-                })
+            item, quantity = match
+            if item not in filter_words:
+                quantity = quantity if quantity else ''
+                result.append(item)
 
         return result
 
 
-# # 사용 예시
+# 사용 예시
 # extractor = ProductQuantityExtractor()
 # texts = [
-#     "유리구슬 마흔하나 새우깡 안창살600그람 하나 머스타드90리터 "
+#     "안녕 사과 와 바나나 딸기 주문 추가로 타코야키",
+#     "치킨, 물티슈, 커피, 아이스크림, 딸기"
+
 # ]
 
 # for text in texts:
 #     result = extractor.extract(text)
 #     # 결과 출력
 #     for v in result:
-#         print(f"상품명:  {v['item']}, 수량:  {v['quantity']}")
+#         print(f"상품명:  {v}")
 #     print("------")

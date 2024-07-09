@@ -59,7 +59,7 @@ class buyBySelenium:
         login_button.click()
 
         # 로그인 정보 입력
-        time.sleep(3)  # 페이지 로딩 대기
+        time.sleep(5)  # 페이지 로딩 대기
         username = self.driver.find_element(By.ID, 'login-email-input')
         password = self.driver.find_element(By.ID, 'login-password-input')
         username.send_keys(self.__user_ID)

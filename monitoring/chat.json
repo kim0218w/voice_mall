@@ -1,0 +1,24 @@
+{
+    "messages": [
+        {
+            "sender": "client",
+            "text": "안녕"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "물티슈 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n물티슈\n맞으십니까?"
+        }
+    ]
+}

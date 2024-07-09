@@ -53,7 +53,7 @@ class controller:
 
         # 주문듣기 10초
         self.order = lc.listen(10)
-        print(self.order)
+        # print(self.order)
         chat.cm.write_chat(chat.chat('client', self.order))
 
         chat.cm.write_chat(chat.chat('ai', '주문확인중'))
@@ -75,7 +75,7 @@ class controller:
         # 주문한 상품이 정확한지 확인하기
         voice = '주문하신 상품이\n'
         for product in self.order_search_word:
-            voice += f'{product["item"]}, {product["quantity"]}개\n'
+            voice += f'{product}\n'
         voice += '맞으십니까?'
         chat.cm.write_chat(chat.chat('ai', voice))
         mv.make_voice(voice)  # 확인하는 음성출력
@@ -88,8 +88,8 @@ class controller:
         # 긍정응답이 존재하는지 확인
         for answer_yes in ['응', '그렇게 해', '어', '그래', '구매해', '주문해', '구매', '주문', '맞아', '네']:
             if '안해' not in res and '취소' not in res and answer_yes in res:
-                chat.cm.write_chat(chat.chat('ai', "주문중"))
-                mv.playsound(sound_path + 'ordering.mp3')  # 주문중 안내
+                chat.cm.write_chat(chat.chat('ai', "쿠팡으로 이동합니다."))
+                mv.playsound(sound_path + 'go_to_coupang.mp3')  # 주문중 안내
                 self.stage = 'order_search'  # 주문검색
                 return
 
@@ -106,29 +106,77 @@ class controller:
             self.selen.go_to_mall()  # 홈페이지 이동
             self.selen.login()  # 홈페이지 로그인
             for search_word in self.order_search_word:
-                print(search_word)
-                voice = f'{search_word["item"]}를 검색합니다.'
+                # print(search_word)
+                voice = f'{search_word}를 검색합니다.'
                 chat.cm.write_chat(chat.chat('ai', voice))
                 mv.make_voice(voice)  # 음성만들고 출력
 
-                self.selen.search_item(search_word['item'])  # 검색
+                #### 검색 ####
+                self.selen.search_item(search_word)  # 검색
                 items = self.selen.get_related_items()  # 검색된 창에서 상품 상위 4개 추출
+
+                #### 상품 선택 ####
                 voice = '상위 4개의 상품 중에\n'
                 i = 1
                 for item in items:
                     voice += f'{i}번. {item.name} {item.price}원, {item.arrival_info}\n'
                     i += 1
 
-                voice += '들이 있어요. 어떤 걸 고르시겠어요? 1 2 3 4 로 말해주세요'
+                voice += '들이 있어요. 어떤 걸 고르시겠어요? 1번째 2번째 3번째 4번째 로 말해주세요'
+                chat.cm.write_chat(chat.chat('ai', voice))
                 mv.make_voice(voice)  # 음성만들고 출력
+                mv.playsound(sound_path + 'water_drop.mp3')
                 res = lc.listen(3)  # 주문에 대한 확인 음성 받기
                 chat.cm.write_chat(chat.chat('client', res))
-                # selected = items[int(res)-1]
-                selected = items[0]  # 테스트용
-                selected.quantity = int(search_word['quantity'])  # 상품 개수 넣어주고
-                self.selen.go_to_add_cart(selected)     # 장바구니에 담으러 감
-                ph.record_purchase_history(selected)  # 구매이력 담기
-                self.stage = "order_add"
+                ITEM_NUM = ex.input_text(res)
+
+                #### 수량 설정 ####
+                # 상품을 주문합니다. 몇 개를 주문하시겠어요?
+                voice = f'{ITEM_NUM}번째 상품을 주문합니다. 몇 개를 주문하시겠어요?'
+                chat.cm.write_chat(chat.chat('ai', voice))
+                mv.make_voice(voice)  # 음성만들고 출력
+                mv.playsound(sound_path + 'water_drop.mp3')
+
+                # 수량받기
+                res = lc.listen(3)  # 주문에 대한 확인 음성 받기
+                ITEM_QUAN = ex.ProductQuantityExtractor().convert_korean_numbers(res)
+                chat.cm.write_chat(chat.chat('client', res))
+
+                #### 최종 확인 ####
+                # 몇 번째 상품 + 수량 맞으십니까?
+                voice = f'{ITEM_NUM}번째 상품 {ITEM_QUAN}개 맞으십니까?'
+                chat.cm.write_chat(chat.chat('ai', voice))
+                mv.make_voice(voice)  # 음성만들고 출력
+                mv.playsound(sound_path + 'water_drop.mp3')
+                res = lc.listen(3)  # 주문에 대한 확인 음성 받기
+
+                ex_flag = False
+                # 긍정응답이 존재하는지 확인
+                for answer_yes in ['응', '그렇게 해', '어', '그래', '구매해', '주문해', '구매', '주문', '맞아', '네']:
+                    if '안해' not in res and '취소' not in res and answer_yes in res:
+
+                        #### 구매 세팅 ####
+                        # selected = items[ITEM_NUM]
+                        # selected.quantity = ITEM_QUAN
+                        selected = items[0]  # for test 1번째 상품을 고름
+                        selected.quantity = 3  # for test 수량 3개로 받음
+
+                        #### 주문 ####
+                        chat.cm.write_chat(chat.chat('ai', "주문중"))
+                        mv.playsound(sound_path + 'ordering.mp3')  # 주문중 안내
+                        self.selen.go_to_add_cart(selected)     # 장바구니에 담으러 감
+                        ph.record_purchase_history(selected)  # 구매이력 담기
+                        self.stage = "order_add"
+                        ex_flag = True
+                        break
+                if ex_flag:
+                    continue
+
+                # 주문실패
+                chat.cm.write_chat(chat.chat('ai', '주문이 담기지 않았아요 이따가 추가 주문해주세요'))
+                mv.playsound(sound_path + 'do_not_your_request_please_order_later.mp3')  # 주문이 담기지 않았아요
+                continue
+
         except Exception as e:
             print(e)
             mv.playsound(sound_path+'something_wrong.mp3')
