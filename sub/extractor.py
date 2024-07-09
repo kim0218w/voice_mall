@@ -38,7 +38,7 @@ class ProductQuantityExtractor:
         matches = pattern.findall(converted_text)
         
         # 필터링 단어 리스트 (필요에 따라 추가)
-        filter_words = ['사줘', '해', '장바구니로','주문','안녕','와','추가로']  
+        filter_words = ['사줘', '해', '장바구니로','주문','안녕','와','추가로','주문해줘','그리고','하지만',]  
         
         # 결과 저장을 위한 리스트
         result = []
@@ -55,36 +55,21 @@ class ProductQuantityExtractor:
                 quantity = quantity if quantity else ''
                 result.append({
                     'item': item,
-                    'quantity': f"{quantity}개"
+                    'quantity': f"{quantity}"
                 })
 
         return result
         
-<<<<<<< HEAD
-# 사용 예시
-extractor = ProductQuantityExtractor()
-texts = [
-    "안녕 사과 와 바나나 딸기 주문 추가로 타코야키"
-]
-
-for text in texts:
-    result = extractor.extract(text)
-    # 결과 출력
-    for v in result:
-        print(f"상품명:  {v['item'] }, 수량:  {v['quantity']}")
-    print("------")
-=======
-
 # # 사용 예시
 # extractor = ProductQuantityExtractor()
 # texts = [
-#     "유리구슬 마흔하나 새우깡 안창살600그람 하나 머스타드90리터 "
+#     "안녕 사과 와 바나나 딸기 주문 추가로 타코야키"
+#     ,"복숭아 안창살 호두 땅콩 그리고 킹크랩 주문해줘 주문 "
 # ]
 
 # for text in texts:
 #     result = extractor.extract(text)
 #     # 결과 출력
 #     for v in result:
-#         print(f"상품명:  {v['item']}, 수량:  {v['quantity']}")
+#         print(f"상품명:  {v['item'] }, 수량:  {v['quantity']}")
 #     print("------")
->>>>>>> 29785821fe44c66cc6192cff057dbd1b00e12d6a
