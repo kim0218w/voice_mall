@@ -36,37 +36,39 @@ class ProductQuantityExtractor:
         # 정규 표현식을 사용하여 상품명과 수량 추출
         pattern = re.compile(r'([가-힣]+\d*[그람|그램|리터]*)\s?(\d+)?\s?[개권통대g]*')
         matches = pattern.findall(converted_text)
-
+        
+        # 필터링 단어 리스트 (필요에 따라 추가)
+        filter_words = ['사줘', '해', '장바구니로','주문','안녕','와','추가로']  
+        
         # 결과 저장을 위한 리스트
         result = []
+      
+        # 한글 수량 변환
+        converted_text = self.convert_korean_numbers(text)
 
-        # 추출된 상품명과 수량을 리스트에 저장
+        
+
+       # 추출된 상품명과 수량을 리스트에 저장
         for match in matches:
-            name_match = re.match(r'(\D+)(\d+)?(\D+)?', match[0])
-            if name_match:
-                name, amount, unit = name_match.groups()
-                amount = amount if amount else ''
-                unit = self.convert_unit(unit) 
-                full_product_name = f"{name}{amount}{unit}".strip()
-                quantity = match[1] if match[1] else '1'
+            item, quantity = match
+            if item not in filter_words:
+                quantity = quantity if quantity else ''
                 result.append({
-                    'item': full_product_name,
+                    'item': item,
                     'quantity': f"{quantity}개"
                 })
 
         return result
-
         
-
 # 사용 예시
 extractor = ProductQuantityExtractor()
 texts = [
-    "유리구슬 마흔하나 새우깡 안창살600그람 하나 머스타드90리터 "
+    "안녕 사과 와 바나나 딸기 주문 추가로 타코야키"
 ]
 
 for text in texts:
     result = extractor.extract(text)
     # 결과 출력
     for v in result:
-        print(f"상품명:  {v['item']}, 수량:  {v['quantity']}")
+        print(f"상품명:  {v['item'] }, 수량:  {v['quantity']}")
     print("------")
