@@ -6,10 +6,12 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 import os
+import sub.error.error_handle as error
+err = error.error()
 
 # for test code
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 
 class item:
@@ -18,7 +20,7 @@ class item:
     arrival_info = ''
     link = ''
 
-    def __init__(self, name, price='', arrival_info='', link='', quantity=0):
+    def __init__(self, name='', price='', arrival_info='', link='', quantity=0):
         self.name = name
         self.price = price
         self.arrival_info = arrival_info
@@ -100,7 +102,7 @@ class buyBySelenium:
         count = 0
         for it in its:
             count += 1
-            if count > 1:  # 4번 실행
+            if count > 4:  # 4번 실행
                 break
 
             link_element = it.find_element(By.XPATH, './/a')
@@ -131,9 +133,11 @@ class buyBySelenium:
         try:
             prod_quantity = self.driver.find_element(
                 By.CSS_SELECTOR, ".prod-quantity__plus")
+            # print(item.quantity)
             for i in range(item.quantity-1):
                 prod_quantity.click()
         except Exception as e:
+            err.write(e, "buy.py go_to_add_cart 에러")
             print(e)
             # --------------------------
 

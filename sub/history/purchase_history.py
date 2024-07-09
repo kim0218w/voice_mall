@@ -1,6 +1,8 @@
 import json
 from datetime import datetime
 import os
+import sub.error.error_handle as error
+err = error.error()
 # from sub.buy import item
 
 
@@ -41,6 +43,7 @@ def record_purchase_history(item_purchased: item):
             with open(file_path, 'w', encoding='utf-8') as file:
                 json.dump(history, file, ensure_ascii=False, indent=4)
         except Exception as e:
+            err.write(e, "purchase_history, json 읽기 오류")
             print(e)
 
     else:
@@ -62,22 +65,68 @@ def record_purchase_history(item_purchased: item):
                 json.dump(history, file, ensure_ascii=False, indent=4)
 
         except Exception as e:
+            err.write(e, "purchase_history, json 읽기 오류")
             print(e)
+
+
+def record_in_bookmart(items: list):
+
+    file_path = './sub/history/bookmark.json'
+    bookmark = []
+
+    try:
+        with open(file_path, 'w', encoding='utf-8') as file:
+            for item in items:
+                bookmark.append({
+                    'name': item.name,
+                    'link': item.link,
+                    'quantity': item.quantity
+                })
+
+            json.dump(bookmark, file, ensure_ascii=False, indent=4)
+
+    except Exception as e:
+        print(e)
+
+
+def get_history() -> dict:
+    file_path = './sub/history/purchase_history.json'
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            history = json.load(file)
+            return history
+
+    except Exception as e:
+        err.write(e, "purchase_history, json 읽기 오류")
+        print(e)
+
+
+def get_bookmark() -> list:
+
+    file_path = './sub/history/bookmark.json'
+
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            bookmark = json.load(file)
+            return bookmark
+
+    except Exception as e:
+        print(e)
 
 
 def now_time_stamp() -> str:
     now = datetime.now()
-    return f'{now.month}/{now.day}'
+    return f'{now.month}월 {now.day}일'
 
+# test
+# test_item1 = item(name='[새로운상회] 새 제품1', link='https://www.example.com', quantity=1)
+# test_item2 = item(name='[새로운상회] 새 제품2', link='https://www.example.com', quantity=2)
+# test_item3 = item(name='[새로운상회] 새 제품3', link='https://www.example.com', quantity=3)
+# test_item4 = item(name='[새로운상회] 새 제품4', link='https://www.example.com', quantity=4)
+# test_item5 = item(name='[새로운상회] 새 제품5', link='https://www.example.com', quantity=5)
 
-test_item1 = item(name='[새로운상회] 새 제품1', link='https://www.example.com', quantity=1)
-test_item2 = item(name='[새로운상회] 새 제품2', link='https://www.example.com', quantity=2)
-test_item3 = item(name='[새로운상회] 새 제품3', link='https://www.example.com', quantity=3)
-test_item4 = item(name='[새로운상회] 새 제품4', link='https://www.example.com', quantity=4)
-test_item5 = item(name='[새로운상회] 새 제품5', link='https://www.example.com', quantity=5)
-
-record_purchase_history(test_item1)
-record_purchase_history(test_item2)
-record_purchase_history(test_item3)
-record_purchase_history(test_item4)
-record_purchase_history(test_item5)
+# record_purchase_history(test_item1)
+# record_purchase_history(test_item2)
+# record_purchase_history(test_item3)
+# record_purchase_history(test_item4)
+# record_purchase_history(test_item5)

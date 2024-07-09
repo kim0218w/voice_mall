@@ -1,29 +1,9 @@
 import re
 
 
-def selectNum(input):
-    order_dict = {
-        '첫째': 1, '첫번째': 1,
-        '둘째': 2, '두번째': 2,
-        '셋째': 3, '셋번째': 3,
-        '넷째': 4, '네번째': 4,
-    }
-
-    # 입력 문자열을 단어 단위로 분리하여 처리
-    words = input.split()
-    for word in words:
-        # 각 단어가 패턴(숫자)에 매칭되는지 확인
-        if word in order_dict:
-            number = order_dict[word]
-            return number
-
-    print('잘못된 선택입니다')
-    return None
-
-
-# 예시 사용
-input_text = '예시는 네번째'
-print(selectNum(input_text))
+# # 예시 사용
+# input_text = '예시는 네번째'
+# print(selectNum(input_text))
 
 
 class ProductQuantityExtractor:
@@ -46,8 +26,14 @@ class ProductQuantityExtractor:
     def convert_korean_numbers(self, text):
         for korean, number in self.korean_to_number.items():
             text = re.sub(r'\b' + korean + r'\b', number, text)
-            print(text)
-        return text
+            if '개' in text:
+                for i in range(len(text)):
+
+                    if text[i] == '개':
+                        text = str(text[:i])
+                        break
+
+        return int(text)
 
     def convert_unit(self, unit):
         if unit in ['그람', '그램']:
@@ -57,22 +43,16 @@ class ProductQuantityExtractor:
         return unit if unit else ''
 
     def extract(self, text):
-        # 한글 수량 변환
-        converted_text = self.convert_korean_numbers(text)
 
         # 정규 표현식을 사용하여 상품명과 수량 추출
         pattern = re.compile(r'([가-힣]+\d*[그람|그램|리터]*)\s?(\d+)?\s?[개권통대g]*')
-        matches = pattern.findall(converted_text)
 
         # 필터링 단어 리스트 (필요에 따라 추가)
         filter_words = ['사줘', '해', '장바구니로', '주문', '안녕', '와', '추가로', '주문해줘', '그리고', '하지만',]
 
         # 결과 저장을 위한 리스트
         result = []
-
-        # 한글 수량 변환
-        converted_text = self.convert_korean_numbers(text)
-
+        matches = pattern.findall(text)
        # 추출된 상품명과 수량을 리스트에 저장
         for match in matches:
             item, quantity = match
@@ -82,9 +62,29 @@ class ProductQuantityExtractor:
 
         return result
 
+    def selectNum(self, input):
+        self.order_dict = {
+            '첫째': 1, '첫번째': 1,
+            '둘째': 2, '두번째': 2,
+            '셋째': 3, '세번째': 3,
+            '넷째': 4, '네번째': 4,
+        }
+
+        # 입력 문자열을 단어 단위로 분리하여 처리
+        words = input.split()
+        for word in words:
+            # 각 단어가 패턴(숫자)에 매칭되는지 확인
+            if word in self.order_dict:
+                number = self.order_dict[word]
+                return number
+
+        print('잘못된 선택입니다')
+        return None
+
 
 # 사용 예시
 # extractor = ProductQuantityExtractor()
+# print(extractor.convert_korean_numbers("열개"))
 # texts = [
 #     "안녕 사과 와 바나나 딸기 주문 추가로 타코야키",
 #     "치킨, 물티슈, 커피, 아이스크림, 딸기"
