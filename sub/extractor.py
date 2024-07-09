@@ -60,6 +60,7 @@ class ProductQuantityExtractor:
 
         return result
         
+<<<<<<< HEAD
 # 사용 예시
 extractor = ProductQuantityExtractor()
 texts = [
@@ -72,3 +73,18 @@ for text in texts:
     for v in result:
         print(f"상품명:  {v['item'] }, 수량:  {v['quantity']}")
     print("------")
+=======
+
+# # 사용 예시
+# extractor = ProductQuantityExtractor()
+# texts = [
+#     "유리구슬 마흔하나 새우깡 안창살600그람 하나 머스타드90리터 "
+# ]
+
+# for text in texts:
+#     result = extractor.extract(text)
+#     # 결과 출력
+#     for v in result:
+#         print(f"상품명:  {v['item']}, 수량:  {v['quantity']}")
+#     print("------")
+>>>>>>> 29785821fe44c66cc6192cff057dbd1b00e12d6a
