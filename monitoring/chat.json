@@ -1,0 +1,32 @@
+{
+    "messages": [
+        {
+            "sender": "client",
+            "text": "안녕"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "즐겨찾기에 있는 거 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "원하시는 즐겨찾기의 상품이\n[산과들에]다크초콜릿 아몬드 30봉 /초코볼, 20g, 30개의 2개\n맞으십니까? 예 아니오로 말해주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": ""
+        },
+        {
+            "sender": "client",
+            "text": "주문을 취소합니다"
+        }
+    ]
+}

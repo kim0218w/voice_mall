@@ -24,18 +24,15 @@ class ProductQuantityExtractor:
         return text
 
     def extract(self, text):
-        # 한글 수량 변환
-        converted_text = self.convert_korean_numbers(text)
 
         # 정규 표현식을 사용하여 상품명과 수량 추출
         pattern = re.compile(r'([가-힣]+)\s?(\d+)\s?[개권통대g]*')
-        matches = pattern.findall(converted_text)
 
         # 결과 저장을 위한 리스트
         result = []
 
         # 추출된 상품명과 수량을 리스트에 저장
-        for match in matches:
+        for match in pattern:
             item = match[0].strip()
             quantity = match[1].strip()
             result.append(

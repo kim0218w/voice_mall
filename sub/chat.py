@@ -1,5 +1,7 @@
 import json
 import os
+import sub.error.error_handle as error
+err = error.error()
 
 
 class chat:
@@ -32,7 +34,8 @@ class chat_manager:
                     json.dump(chats, file, ensure_ascii=False, indent=4)
 
             except Exception as e:
-                print("chat-", e)
+                err.write(e, "chat_manager - write_chat method 오류")
+                print(e)
 
         else:
             try:
@@ -52,7 +55,8 @@ class chat_manager:
                 with open(self.file_path, 'w', encoding='utf-8') as file:
                     json.dump(chats, file, ensure_ascii=False, indent=4)
             except Exception as e:
-                print("chat-", e)
+                err.write(e, "chat_manager - write_chat method 오류")
+                print(e)
 
     def chat_room_init(self):
         # 파일이 존재하는지 확인
@@ -61,7 +65,8 @@ class chat_manager:
                 os.remove(self.file_path)
                 print(f"파일 {'order_confirm.mp3'} 이(가) 삭제되었습니다.")
             except Exception as e:
-                print(f"파일 삭제 중 오류 발생: {e}")
+                err.write(e, "chat_manager - chat_room_init 오류")
+                print(e)
         else:
             print(f"파일 {'order_confirm.mp3'} 이(가) 존재하지 않습니다.")
 
