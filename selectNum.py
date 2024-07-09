@@ -8,15 +8,17 @@ def selectNum(input):
         '넷째': 4, '네번째': 4, '사': 4, '사번': 4, '넷': 4
     }
     
-    # 정규표현식 패턴 설정
-    pattern = r'\b(첫째|첫번째|일|일번|하나|둘째|두번째|이|이번|둘|셋째|셋번째|삼|삼번|셋|넷째|네번째|사|사번|넷)\b'
+    # 입력 문자열을 단어 단위로 분리하여 처리
+    words = input.split()
+    for word in words:
+        # 각 단어가 패턴에 매칭되는지 확인
+        if word in order_dict:
+            number = order_dict[word]
+            return number
     
-    # 입력 문자열에서 패턴에 맞는 단어 찾기
-    match = re.search(pattern, input)
-    if match:
-        word = match.group(0)
-        number = order_dict[word]
-        return number
-    else:
-        print('잘못된 선택입니다')
-        return None
+    print('잘못된 선택입니다')
+    return None
+
+# 예시
+input_text = '예시는 셋'
+print(selectNum(input_text))
