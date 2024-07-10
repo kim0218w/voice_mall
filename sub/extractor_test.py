@@ -24,16 +24,27 @@ class ProductQuantityExtractor:
     # 한글을 숫자로 표시
 
     def convert_korean_numbers(self, text):
+        strange_input = {'한계': 1, '하나': 1, '세계': 3}
+
+        keys = list(strange_input.keys())
+
+        if text in keys:
+            return strange_input[text]
+
         for korean, number in self.korean_to_number.items():
             text = re.sub(r'\b' + korean + r'\b', number, text)
             if '개' in text:
                 for i in range(len(text)):
-
                     if text[i] == '개':
-                        text = str(text[:i])
-                        break
-
-        return int(text)
+                        text = str(text[:i]).strip()
+                        try:
+                            if text in self.korean_to_number:
+                                return int(self.korean_to_number[text])
+                            else:
+                                return int(text)
+                        except Exception as e:
+                            print(e)
+                            return None
 
     def convert_unit(self, unit):
         if unit in ['그람', '그램']:
@@ -48,7 +59,7 @@ class ProductQuantityExtractor:
         pattern = re.compile(r'([가-힣]+\d*[그람|그램|리터]*)\s?(\d+)?\s?[개권통대g]*')
 
         # 필터링 단어 리스트 (필요에 따라 추가)
-        filter_words = ['사줘', '해', '장바구니로', '주문', '안녕', '와', '추가로', '주문해줘', '그리고', '하지만',]
+        filter_words = ['사줘', '해', '장바구니로', '주문', '안녕', '와', '추가로', '주문해줘', '그리고', '하지만', '주문해줘', '주문 해달라고', '주문해']
 
         # 결과 저장을 위한 리스트
         result = []
@@ -78,7 +89,6 @@ class ProductQuantityExtractor:
                 number = self.order_dict[word]
                 return number
 
-        print('잘못된 선택입니다')
         return None
 
 

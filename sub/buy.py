@@ -101,21 +101,41 @@ class buyBySelenium:
         item_list = []
         count = 0
         for it in its:
-            count += 1
-            if count > 4:  # 4번 실행
+
+            # 첫 번째 상품 제거 (보통 추천상품임)
+            if count == 0:
+                count += 1
+                continue
+
+            if count > 3:  # 3개 뽑음
                 break
+            count += 1
 
-            link_element = it.find_element(By.XPATH, './/a')
-            it_link = link_element.get_attribute('href')
-
-            it_name = it.find_element(
-                By.XPATH, './/div[contains(@class, "name")]').text
-
-            it_price = it.find_element(
-                By.CSS_SELECTOR, '.price-value').text
-
-            it_arrive_time = it.find_element(
-                By.CSS_SELECTOR, '.arrival-info').text
+            # 담는데 문제 있으면 그 상품 안 담음
+            try:
+                link_element = it.find_element(By.XPATH, './/a')
+                it_link = link_element.get_attribute('href')
+            except Exception as e:
+                err.write(e, '')
+                continue
+            try:
+                it_name = it.find_element(
+                    By.XPATH, './/div[contains(@class, "name")]').text
+            except Exception as e:
+                err.write(e, '')
+                continue
+            try:
+                it_price = it.find_element(
+                    By.CSS_SELECTOR, '.price-value').text
+            except Exception as e:
+                err.write(e, '')
+                continue
+            try:
+                it_arrive_time = it.find_element(
+                    By.CSS_SELECTOR, '.arrival-info').text
+            except Exception as e:
+                err.write(e, '')
+                continue
 
             item_list.append(
                 item(it_name, it_price, it_arrive_time, it_link))
@@ -134,7 +154,7 @@ class buyBySelenium:
             prod_quantity = self.driver.find_element(
                 By.CSS_SELECTOR, ".prod-quantity__plus")
             # print(item.quantity)
-            for i in range(item.quantity-1):
+            for i in range(item.quantity):
                 prod_quantity.click()
         except Exception as e:
             err.write(e, "buy.py go_to_add_cart 에러")
