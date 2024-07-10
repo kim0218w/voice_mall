@@ -1,5 +1,5 @@
 import sub.make_voice as mv
-import sub.extractor_test as ex
+import sub.extractor as ex
 import sub.buy as buy
 import os
 from STT import listen_to_client as ltc

@@ -10,7 +10,39 @@
         },
         {
             "sender": "client",
-            "text": "토마토 주문해줘"
+            "text": "토마토 주문 해봐"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n토마토\n해봐\n맞으십니까?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "아니"
+        },
+        {
+            "sender": "ai",
+            "text": "다시 주문해주세요"
+        },
+        {
+            "sender": "client",
+            "text": "헤이 광태"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "토마토 주문해"
         },
         {
             "sender": "ai",
@@ -43,34 +75,6 @@
         {
             "sender": "ai",
             "text": "1번. 토마토 5kg /크기랜덤, 1개, 토마토(5kg) 850원, 7월16일화 도착 예정\n"
-        },
-        {
-            "sender": "ai",
-            "text": "2번. 부산 대저 짭짤이 토마토, S 소과2.5kg(28개 내외), 1박스 8,900원, 모레(토) 도착 예정\n"
-        },
-        {
-            "sender": "ai",
-            "text": "들이 있어요. 어떤 걸 고르시겠어요? 1번째 2번째 3번째로 말해주세요"
-        },
-        {
-            "sender": "ai",
-            "text": "듣고 있어요"
-        },
-        {
-            "sender": "client",
-            "text": "두번째"
-        },
-        {
-            "sender": "ai",
-            "text": "2번째 상품을 주문합니다. 몇 개를 주문하시겠어요?"
-        },
-        {
-            "sender": "ai",
-            "text": "듣고 있어요"
-        },
-        {
-            "sender": "client",
-            "text": ""
         }
     ]
 }
