@@ -51,3 +51,15 @@ body {
 .message .bubble p {
   margin: 0;
 }
+
+.message img.profile-pic {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.message.client img.profile-pic {
+  margin-left: 10px;
+  margin-right: 0;
+}

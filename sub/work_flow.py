@@ -14,7 +14,7 @@ id = os.getenv('COUPANG_ID')
 pw = os.getenv('COUPANG_PW')
 
 lc = ltc.listen_to_client()
-ai_name = '안녕'
+ai_name = '광태'
 sound_path = './sound/'
 
 
@@ -45,8 +45,8 @@ class controller:
     def ai호출(self):
         # ai 부르는 거 듣기
         call_ai = lc.listen(duration=3)  # 3초
-        if ai_name in call_ai:
-            chat.cm.write_chat(chat.chat('client', ai_name))
+        if ai_name in call_ai or '강태' in call_ai or '캉태' in call_ai:
+            chat.cm.write_chat(chat.chat('client', call_ai))
             self.order_items = []  # 장바구니에 담을 상품들 초기화
             # order stage로 이동
             self.stage = 'order_listen'
@@ -126,14 +126,16 @@ class controller:
 
                 #### 상품 선택 ####
                 voice = '상위 3개의 상품 중에\n'
+                chat.cm.write_chat(chat.chat('ai', voice))
+                mv.make_voice(voice)
                 i = 1
                 for item in items:
-                    voice += f'{i}번. {item.name} {item.price}원, {item.arrival_info}\n'
+                    voice = f'{i}번. {item.name} {item.price}원, {ex.ProductQuantityExtractor().format_dates(item.arrival_info)}\n'
+                    chat.cm.write_chat(chat.chat('ai', voice))
+                    mv.make_voice(voice)
                     i += 1
-                voice += '들이 있어요. 어떤 걸 고르시겠어요? 1번째 2번째 3번째로 말해주세요'
+                voice = '들이 있어요. 어떤 걸 고르시겠어요? 1번째 2번째 3번째로 말해주세요'
                 ITEM_NUM, ok = self.__select_item_num(voice)
-                print(ok, 'ok')
-                print(ITEM_NUM, 'itemNum')
                 if ok:
                     #### 수량 설정 ####
                     # 상품을 주문합니다. 몇 개를 주문하시겠어요?
@@ -224,7 +226,9 @@ class controller:
 
         finally:
             self.stage = "call_ai"  # 다시 ai 호출을 기다리도록 함
+            chat.cm.write_chat(chat.chat('ai', '요청을 모두 완료했습니다. 다시 저를 불러주세요'))
             mv.make_voice('요청을 모두 완료했습니다. 다시 저를 불러주세요')
+            chat.cm.write_chat(chat.chat('ai', './엄지척_광태.png'))
 
     def 가장최근구매상품주문(self):
 
@@ -240,13 +244,17 @@ class controller:
         recent_purchases_info = history[sorted_date_list[0]]
 
         voice = '가장 최근에 주문하신 상품이\n'
+        chat.cm.write_chat(chat.chat('ai', voice))
+        mv.make_voice(voice)
         # 주문할 상품 세팅
         items = []
         for item in recent_purchases_info:
-            voice += f'{item["name"]}의 {item["quantity"]}개\n'
+            voice = f'{item["name"]}의 {item["quantity"]}개\n'
+            chat.cm.write_chat(chat.chat('ai', voice))
+            mv.make_voice(voice)
             items.append(buy.item(link=item['link'], quantity=item['quantity']))
 
-        voice += '맞으십니까?'
+        voice = '맞으십니까?'
         _, ok = self.__if_user_ok(voice)
         if ok:
             chat.cm.write_chat(chat.chat('ai', '구매를 시작합니다. 잠시만 기다려주세요'))
@@ -269,13 +277,17 @@ class controller:
     def 즐겨찾기구매(self):
         bookmark = ph.get_bookmark()
         voice = '원하시는 즐겨찾기의 상품이\n'
+        chat.cm.write_chat(chat.chat('ai', voice))
+        mv.make_voice(voice)
         # 주문할 상품 세팅
         items = []
         for item in bookmark:
-            voice += f'{item["name"]}의 {item["quantity"]}개\n'
+            voice = f'{item["name"]}의 {item["quantity"]}개\n'
+            chat.cm.write_chat(chat.chat('ai', voice))
+            mv.make_voice(voice)
             items.append(buy.item(link=item['link'], quantity=item['quantity']))
 
-        voice += '맞으십니까?'
+        voice = '맞으십니까?'
         _, ok = self.__if_user_ok(voice)
         if ok:
             chat.cm.write_chat(chat.chat('ai', '구매를 시작합니다. 잠시만 기다려주세요'))

@@ -117,24 +117,28 @@ class buyBySelenium:
                 it_link = link_element.get_attribute('href')
             except Exception as e:
                 err.write(e, '')
+                count -= 1
                 continue
             try:
                 it_name = it.find_element(
                     By.XPATH, './/div[contains(@class, "name")]').text
             except Exception as e:
                 err.write(e, '')
+                count -= 1
                 continue
             try:
                 it_price = it.find_element(
                     By.CSS_SELECTOR, '.price-value').text
             except Exception as e:
                 err.write(e, '')
+                count -= 1
                 continue
             try:
                 it_arrive_time = it.find_element(
                     By.CSS_SELECTOR, '.arrival-info').text
             except Exception as e:
                 err.write(e, '')
+                count -= 1
                 continue
 
             item_list.append(
@@ -154,7 +158,7 @@ class buyBySelenium:
             prod_quantity = self.driver.find_element(
                 By.CSS_SELECTOR, ".prod-quantity__plus")
             # print(item.quantity)
-            for i in range(item.quantity):
+            for i in range(item.quantity-1):
                 prod_quantity.click()
         except Exception as e:
             err.write(e, "buy.py go_to_add_cart 에러")

@@ -24,7 +24,7 @@ class ProductQuantityExtractor:
     # 한글을 숫자로 표시
 
     def convert_korean_numbers(self, text):
-        strange_input = {'한계': 1, '하나': 1, '세계': 3}
+        strange_input = {'한계': 1, '하나': 1, '크게': 2, '투개': 2, '세계': 3}
 
         keys = list(strange_input.keys())
 
@@ -91,19 +91,16 @@ class ProductQuantityExtractor:
 
         return None
 
+    # {월}/{일}(요일)을 {월}월{일}일{요일}로 변환하는 함수
+    def format_dates(self, input_string):
+        special_not = ['내일', '오늘', '모레']
 
-# 사용 예시
-# extractor = ProductQuantityExtractor()
-# print(extractor.convert_korean_numbers("열개"))
-# texts = [
-#     "안녕 사과 와 바나나 딸기 주문 추가로 타코야키",
-#     "치킨, 물티슈, 커피, 아이스크림, 딸기"
+        for notation in special_not:
+            if notation in input_string:
+                return input_string
 
-# ]
-
-# for text in texts:
-#     result = extractor.extract(text)
-#     # 결과 출력
-#     for v in result:
-#         print(f"상품명:  {v}")
-#     print("------")
+        if input_string is None:
+            return None  # None 입력 처리
+        # 문자열 형식 변환 함수
+        formatted_string = re.sub(r'(\d+)/(\d+)\((\w+)\)', r'\1월\2일\3', input_string)
+        return formatted_string if formatted_string != input_string else None  # 패턴 미일치 시 None 반환

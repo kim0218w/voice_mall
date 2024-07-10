@@ -14,14 +14,40 @@ document.addEventListener("DOMContentLoaded", () => {
           const messageElement = document.createElement("div");
           messageElement.classList.add("message", message.sender);
 
+          const profilePicElement = document.createElement("img");
+          profilePicElement.classList.add("profile-pic");
+
+          // Set profile picture based on sender
+          if (message.sender === "ai") {
+            profilePicElement.src = "./ai_광태.png"; // Path to AI profile picture
+          } else if (message.sender === "client") {
+            profilePicElement.src = "human_profile.png"; // Path to client profile picture
+          } else {
+            profilePicElement.src = "default-profile-pic.png"; // Default profile picture
+          }
+
           const bubbleElement = document.createElement("div");
           bubbleElement.classList.add("bubble");
 
-          const textElement = document.createElement("p");
-          textElement.textContent = message.text;
+          // Check if the message text is a URL to an image
+          if (/\.(jpeg|jpg|gif|png)$/.test(message.text)) {
+            const imageElement = document.createElement("img");
+            imageElement.src = message.text;
+            imageElement.style.maxWidth = "100%";
+            bubbleElement.appendChild(imageElement);
+          } else {
+            const textElement = document.createElement("p");
+            textElement.textContent = message.text;
+            bubbleElement.appendChild(textElement);
+          }
 
-          bubbleElement.appendChild(textElement);
-          messageElement.appendChild(bubbleElement);
+          if (message.sender === "client") {
+            messageElement.appendChild(bubbleElement);
+            messageElement.appendChild(profilePicElement);
+          } else {
+            messageElement.appendChild(profilePicElement);
+            messageElement.appendChild(bubbleElement);
+          }
           chatBox.appendChild(messageElement);
 
           // Scroll to the bottom of the chat box
