@@ -2,7 +2,167 @@
     "messages": [
         {
             "sender": "client",
-            "text": "동해 광택 복원제"
+            "text": "헤이 광택"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "김 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n김\n맞으십니까?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "어"
+        },
+        {
+            "sender": "ai",
+            "text": "쿠팡으로 이동합니다."
+        },
+        {
+            "sender": "ai",
+            "text": "김를 검색합니다."
+        },
+        {
+            "sender": "ai",
+            "text": "상위 3개의 상품 중에\n"
+        },
+        {
+            "sender": "ai",
+            "text": "1번. 곰곰 광천 도시락김, 5g, 64개 0원, 내일(금) 도착 보장\n"
+        },
+        {
+            "sender": "ai",
+            "text": "2번. 광천김 참 재래도시락 김, 5g, 64개 0원, 내일(금) 도착 보장\n"
+        },
+        {
+            "sender": "ai",
+            "text": "3번. 곰곰 광천 도시락김, 5g, 32개 0원, 내일(금) 도착 보장\n"
+        },
+        {
+            "sender": "ai",
+            "text": "들이 있어요. 어떤 걸 고르시겠어요? 1번째 2번째 3번째로 말해주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "첫번째"
+        },
+        {
+            "sender": "ai",
+            "text": "1번째 상품을 주문합니다. 몇 개를 주문하시겠어요?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "세계"
+        },
+        {
+            "sender": "ai",
+            "text": "1번째 상품 3개 맞으십니까?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "맞아"
+        },
+        {
+            "sender": "ai",
+            "text": "주문중"
+        },
+        {
+            "sender": "ai",
+            "text": "추가하실 것이 더 있으신가요?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "아니"
+        },
+        {
+            "sender": "ai",
+            "text": "요청하신 상품을 장바구니에 모두 담았습니다"
+        },
+        {
+            "sender": "ai",
+            "text": "즐겨찾기로 설정할까요? 한 개만 저장할 수 있어요"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "아니"
+        },
+        {
+            "sender": "ai",
+            "text": "요청을 모두 완료했습니다. 다시 저를 불러주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "./엄지척_광태.png"
+        },
+        {
+            "sender": "client",
+            "text": "광태야"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "김치 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "주문확인중"
+        },
+        {
+            "sender": "ai",
+            "text": "주문하신 상품이\n김치\n맞으십니까?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "아니"
+        },
+        {
+            "sender": "ai",
+            "text": "다시 주문해주세요"
+        },
+        {
+            "sender": "client",
+            "text": "광태야"
         },
         {
             "sender": "ai",
@@ -30,11 +190,79 @@
         },
         {
             "sender": "client",
-            "text": "노래 재생"
+            "text": "맞아"
+        },
+        {
+            "sender": "ai",
+            "text": "구매를 시작합니다. 잠시만 기다려주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "요청하신 상품을 장바구니에 모두 담았습니다"
+        },
+        {
+            "sender": "ai",
+            "text": "./ai_광태.png"
         },
         {
             "sender": "client",
-            "text": "주문을 취소합니다"
+            "text": "광태야"
+        },
+        {
+            "sender": "ai",
+            "text": "주문받는중"
+        },
+        {
+            "sender": "client",
+            "text": "최근에 주문한 상품 주문해줘"
+        },
+        {
+            "sender": "ai",
+            "text": "가장 최근에 구매한 상품들을 주문하겠습니다."
+        },
+        {
+            "sender": "ai",
+            "text": "가장 최근에 주문하신 상품이\n"
+        },
+        {
+            "sender": "ai",
+            "text": "부산 대저 짭짤이 토마토, S 소과2.5kg(28개 내외), 1박스의 2개\n"
+        },
+        {
+            "sender": "ai",
+            "text": "토마토 5kg /크기랜덤, 1개, 토마토(5kg)의 3개\n"
+        },
+        {
+            "sender": "ai",
+            "text": "[러브빈 마카롱] 달지않고 쫀득한 수제 마카롱 8개입 개별포장 택배비무료, 세트2번, 1세트의 2개\n"
+        },
+        {
+            "sender": "ai",
+            "text": "곰곰 광천 도시락김, 5g, 64개의 3개\n"
+        },
+        {
+            "sender": "ai",
+            "text": "맞으십니까?"
+        },
+        {
+            "sender": "ai",
+            "text": "듣고 있어요"
+        },
+        {
+            "sender": "client",
+            "text": "어 맞아"
+        },
+        {
+            "sender": "ai",
+            "text": "구매를 시작합니다. 잠시만 기다려주세요"
+        },
+        {
+            "sender": "ai",
+            "text": "요청하신 상품을 장바구니에 모두 담았습니다"
+        },
+        {
+            "sender": "ai",
+            "text": "./헤드셋_광태.jpg"
         }
     ]
 }

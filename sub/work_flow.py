@@ -46,7 +46,7 @@ class controller:
         # ai 부르는 거 듣기
         call_ai = lc.listen(duration=5)
         print(call_ai)
-        if ai_name in call_ai or '강태' in call_ai or '캉태' in call_ai or '광택' in call_ai or '강택' in call_ai or '과학대' in call_ai:
+        if ai_name in call_ai or '강태' in call_ai or '캉태' in call_ai or '광택' in call_ai or '강택' in call_ai or '과학대' in call_ai or '광제' in call_ai:
             chat.cm.write_chat(chat.chat('client', call_ai))
             self.order_items = []  # 장바구니에 담을 상품들 초기화
             # order stage로 이동
