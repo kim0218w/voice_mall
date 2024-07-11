@@ -2,13 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatBox = document.getElementById("chat-box");
   let lastMessageIndex = 0;
 
+  const scrollToBottom = () => {
+    chatBox.scrollTop = chatBox.scrollHeight;
+  };
+
   const loadMessages = () => {
     fetch("chat.json")
       .then((response) => response.json())
       .then((data) => {
         const messages = data.messages;
 
-        // Add new messages to the chat box
+        // 새로운 메시지를 채팅 박스에 추가
         for (let i = lastMessageIndex; i < messages.length; i++) {
           const message = messages[i];
           const messageElement = document.createElement("div");
@@ -17,24 +21,27 @@ document.addEventListener("DOMContentLoaded", () => {
           const profilePicElement = document.createElement("img");
           profilePicElement.classList.add("profile-pic");
 
-          // Set profile picture based on sender
+          // 발신자에 따라 프로필 사진 설정
           if (message.sender === "ai") {
-            profilePicElement.src = "./ai_광태.png"; // Path to AI profile picture
+            profilePicElement.src = "./ai_광태.png"; // AI 프로필 사진 경로
           } else if (message.sender === "client") {
-            profilePicElement.src = "human_profile.png"; // Path to client profile picture
+            profilePicElement.src = "human_profile.png"; // 클라이언트 프로필 사진 경로
           } else {
-            profilePicElement.src = "default-profile-pic.png"; // Default profile picture
+            profilePicElement.src = "default-profile-pic.png"; // 기본 프로필 사진 경로
           }
 
           const bubbleElement = document.createElement("div");
           bubbleElement.classList.add("bubble");
 
-          // Check if the message text is a URL to an image
+          // 메시지 내용이 이미지 파일인지 확인
           if (/\.(jpeg|jpg|gif|png)$/.test(message.text)) {
             const imageElement = document.createElement("img");
             imageElement.src = message.text;
             imageElement.style.maxWidth = "100%";
             bubbleElement.appendChild(imageElement);
+
+            // 이미지 로드 완료 후 채팅 박스를 아래로 스크롤
+            imageElement.onload = scrollToBottom;
           } else {
             const textElement = document.createElement("p");
             textElement.textContent = message.text;
@@ -49,20 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
             messageElement.appendChild(bubbleElement);
           }
           chatBox.appendChild(messageElement);
-
-          // Scroll to the bottom of the chat box
-          chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Update the last message index
+        // 마지막 메시지 인덱스 업데이트
         lastMessageIndex = messages.length;
       })
-      .catch((error) => console.error("Error fetching chat data:", error));
+      .catch((error) => console.error("채팅 데이터 로드 오류:", error));
   };
 
-  // Initial load
+  // 초기 로드
   loadMessages();
 
-  // Poll for new messages every 1 seconds
+  // 새로운 메시지를 1초마다 확인
   setInterval(loadMessages, 1000);
 });

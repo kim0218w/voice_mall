@@ -44,8 +44,9 @@ class controller:
 
     def ai호출(self):
         # ai 부르는 거 듣기
-        call_ai = lc.listen(duration=3)  # 3초
-        if ai_name in call_ai or '강태' in call_ai or '캉태' in call_ai:
+        call_ai = lc.listen(duration=5)
+        print(call_ai)
+        if ai_name in call_ai or '강태' in call_ai or '캉태' in call_ai or '광택' in call_ai or '강택' in call_ai or '과학대' in call_ai:
             chat.cm.write_chat(chat.chat('client', call_ai))
             self.order_items = []  # 장바구니에 담을 상품들 초기화
             # order stage로 이동
@@ -179,9 +180,11 @@ class controller:
         except Exception as e:
             if len(self.order_items) != 0:
                 mv.make_voice('주문이 되지 않은게 있어요. 나중에 추가해주세요')
+                chat.cm.write_chat(chat.chat('ai', '주문이 되지 않은게 있어요. 나중에 추가해주세요'))
                 self.stage = 'order_add'  # 주문 추가 여부를 물어보러 이동
             else:
                 err.write(e, '주문검색 에러')
+                chat.cm.write_chat(chat.chat('ai', '오류발생 다시 저를 불러주세요'))
                 mv.playsound(sound_path+'something_wrong.mp3')
                 self.stage = "call_ai"  # 다시 ai 호출을 기다리도록 함
 
@@ -227,13 +230,13 @@ class controller:
         finally:
             self.stage = "call_ai"  # 다시 ai 호출을 기다리도록 함
             chat.cm.write_chat(chat.chat('ai', '요청을 모두 완료했습니다. 다시 저를 불러주세요'))
-            mv.make_voice('요청을 모두 완료했습니다. 다시 저를 불러주세요')
+            mv.make_voice('요청을 모두 완료했습니다. 제가 필요하시면 다시 불러주세요')
             chat.cm.write_chat(chat.chat('ai', './엄지척_광태.png'))
 
     def 가장최근구매상품주문(self):
 
         chat.cm.write_chat(chat.chat('ai', '가장 최근에 구매한 상품들을 주문하겠습니다.'))
-        mv.playsound(sound_path + 'dorder_recent_products.mp3')
+        mv.playsound(sound_path + 'order_recent_products.mp3')
         history = ph.get_history()
 
         keys = list(history.keys())
@@ -269,6 +272,8 @@ class controller:
             chat.cm.write_chat(chat.chat('ai', "요청하신 상품을 장바구니에 모두 담았습니다"))
             mv.playsound(sound_path + 'request_item_all_clear.mp3')
             self.stage = 'call_ai'
+            mv.make_voice('요청을 모두 완료했습니다. 제가 필요하시면 다시 불러주세요')
+            chat.cm.write_chat(chat.chat('ai', './헤드셋_광태.jpg'))
         else:
             chat.cm.write_chat(chat.chat('client', '주문을 취소합니다'))
             mv.playsound(sound_path + 'cancel_order.mp3')
@@ -301,6 +306,9 @@ class controller:
 
             chat.cm.write_chat(chat.chat('ai', "요청하신 상품을 장바구니에 모두 담았습니다"))
             mv.playsound(sound_path + 'request_item_all_clear.mp3')
+            mv.make_voice('요청을 모두 완료했습니다. 제가 필요하시면 다시 불러주세요')
+            chat.cm.write_chat(chat.chat('ai', './ai_광태.png'))
+
         else:
             chat.cm.write_chat(chat.chat('client', '주문을 취소합니다'))
             mv.playsound(sound_path + 'cancel_order.mp3')

@@ -458,3 +458,33 @@ Stacktrace:
 	RtlInitializeExceptionChain [0x77BFC10B+107]
 	RtlClearBits [0x77BFC08F+191]
 , 
+2024y 7m 11d 11h 13 36 Message: element click intercepted: Element <button class="prod-quantity__plus" type="button">...</button> is not clickable at point (589, 587). Other element would receive the click: <span class="price">...</span>
+  (Session info: chrome=126.0.6478.127)
+Stacktrace:
+	GetHandleVerifier [0x00B0C1C3+27395]
+	(No symbol) [0x00AA3DC4]
+	(No symbol) [0x009A1B7F]
+	(No symbol) [0x009E8C22]
+	(No symbol) [0x009E6FA8]
+	(No symbol) [0x009E4E2B]
+	(No symbol) [0x009E43D7]
+	(No symbol) [0x009D918F]
+	(No symbol) [0x00A0399C]
+	(No symbol) [0x009D8C15]
+	(No symbol) [0x00A03C34]
+	(No symbol) [0x00A1CB24]
+	(No symbol) [0x00A03736]
+	(No symbol) [0x009D7541]
+	(No symbol) [0x009D80BD]
+	GetHandleVerifier [0x00DC3A93+2876371]
+	GetHandleVerifier [0x00E17F5D+3221661]
+	GetHandleVerifier [0x00B8D634+556916]
+	GetHandleVerifier [0x00B9474C+585868]
+	(No symbol) [0x00AACE04]
+	(No symbol) [0x00AA9818]
+	(No symbol) [0x00AA99B7]
+	(No symbol) [0x00A9BF0E]
+	BaseThreadInitThunk [0x76A77BA9+25]
+	RtlInitializeExceptionChain [0x77BFC10B+107]
+	RtlClearBits [0x77BFC08F+191]
+, buy.py go_to_add_cart 에러

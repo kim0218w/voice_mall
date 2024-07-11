@@ -2,7 +2,7 @@
     "messages": [
         {
             "sender": "client",
-            "text": "헤이 광태"
+            "text": "동해 광택 복원제"
         },
         {
             "sender": "ai",
@@ -10,47 +10,19 @@
         },
         {
             "sender": "client",
-            "text": "토마토 주문 해봐"
+            "text": "즐겨찾기 주문해줘"
         },
         {
             "sender": "ai",
-            "text": "주문확인중"
+            "text": "원하시는 즐겨찾기의 상품이\n"
         },
         {
             "sender": "ai",
-            "text": "주문하신 상품이\n토마토\n해봐\n맞으십니까?"
+            "text": "토마토 5kg /크기랜덤, 1개, 토마토(5kg)의 1개\n"
         },
         {
             "sender": "ai",
-            "text": "듣고 있어요"
-        },
-        {
-            "sender": "client",
-            "text": "아니"
-        },
-        {
-            "sender": "ai",
-            "text": "다시 주문해주세요"
-        },
-        {
-            "sender": "client",
-            "text": "헤이 광태"
-        },
-        {
-            "sender": "ai",
-            "text": "주문받는중"
-        },
-        {
-            "sender": "client",
-            "text": "토마토 주문해"
-        },
-        {
-            "sender": "ai",
-            "text": "주문확인중"
-        },
-        {
-            "sender": "ai",
-            "text": "주문하신 상품이\n토마토\n맞으십니까?"
+            "text": "맞으십니까?"
         },
         {
             "sender": "ai",
@@ -58,23 +30,11 @@
         },
         {
             "sender": "client",
-            "text": "어 맞아"
+            "text": "노래 재생"
         },
         {
-            "sender": "ai",
-            "text": "쿠팡으로 이동합니다."
-        },
-        {
-            "sender": "ai",
-            "text": "토마토를 검색합니다."
-        },
-        {
-            "sender": "ai",
-            "text": "상위 3개의 상품 중에\n"
-        },
-        {
-            "sender": "ai",
-            "text": "1번. 토마토 5kg /크기랜덤, 1개, 토마토(5kg) 850원, 7월16일화 도착 예정\n"
+            "sender": "client",
+            "text": "주문을 취소합니다"
         }
     ]
 }
